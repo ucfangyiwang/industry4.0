@@ -1,0 +1,140 @@
+﻿
+@{      ViewData["Tittle"] = "Companies&Organisations";
+}
+<div class="container-fluid">
+    <article>
+
+        <section id="bg3" style="padding-left: 0px; padding-right: 0px;" class="col-md-12 col-sm-12 col-12">
+            <header id="ind">Companies and Organisations</header>
+            <p id="intro">
+                The Industry 4.0 market is forecasted to reach $1 trillion by 2030, dominated by global technology<br />
+                giants including Alphabet-Google, HP, Samsung, IBM, NEC, Microsoft, and more. According to the new <br />
+                4-volume report by HSRC: Global Industry 4.0 Market & Technologies 2018-2023, the Industry 4.0 market<br />
+                will reach $214B by 2023 (https://www.prnewswire.com/news-releases/global-tech-giants-to-lead-the-industry-40-revolution-300585640.html)
+            </p>
+        </section>
+        <section class="row">
+            <figure class="col-md-6 col-sm-6 col-12" style="padding:0px; margin:0px;" onmouseover="displayInfo('div1')" onmouseout="removeInfo('div1')">
+                <img src="../images/Companies/ibm.jpg" />
+
+                <figcaption id="div1">
+                    <p>IBM</p>
+                    <p class="stitle">
+
+                        <a class="btn btn-info" href="https://www.ibm.com/industries/manufacturing?S_PKG=ov60479&cm_mmc=Search_Google-_-Industrial_Industrial+-+Discrete+Manufacturing-_-WW_NA-_-industry+4.0_Exact_ov60479&cm_mmca1=000020DR&cm_mmca2=10005255&cm_mmca7=9071954&cm_mmca8=kwd-297031802574&cm_mmca9=9a244c0e-4e2f-4a0c-879b-abaf5cee4a64&cm_mmca10=280798821827&cm_mmca11=e&mkwid=9a244c0e-4e2f-4a0c-879b-abaf5cee4a64|1082|36760&cvosrc=ppc.google.industry%204.0&cvo_campaign=000020DR&cvo_crid=280798821827&Matchtype=e">
+                            Learn More
+                        </a>
+                </figcaption>
+
+            </figure>
+            <figure class="col-md-6 col-sm-6 col-12" style="padding:0px; margin:0px;" onmouseover="displayInfo('div2')" onmouseout="removeInfo('div2')">
+                <img src="../images/Companies/amazon.jpg" />
+
+
+                <figcaption id="div2">
+                    <p>Amazon</p>
+                    <p class="stitle">
+
+                        <a class="btn btn-info" href="https://aws.amazon.com/ai/">
+                            Learn More
+                        </a>
+                </figcaption>
+            </figure>
+            <figure class="col-md-12 col-sm-12 col-12" style="padding:0px; margin:0px;" onmouseover="displayInfo('div3')" onmouseout="removeInfo('div3')">
+                <img src="../images/Companies/google.jpg" />
+
+                <figcaption id="div3">
+                    <p>Google</p>
+                    <p class="stitle">
+
+                        <a class="btn btn-info" href="https://ai.google/">
+                            Learn More
+                        </a>
+                </figcaption>
+            </figure>
+            <figure class="col-md-6 col-sm-6 col-12" style="padding:0px; margin:0px;" onmouseover="displayInfo('div4')" onmouseout="removeInfo('div4')">
+                <img src="../images/Companies/CSIRO.jpg" />
+
+                <figcaption id="div4">
+                    <p>CSIRO</p>
+                    <p class="stitle">
+
+                        <a class="btn btn-info" href="https://www.microsoft.com/en-us/ai?activetab=pivot1:primaryr6">
+                            Learn More
+                        </a>
+                </figcaption>
+            </figure>
+            <figure class="col-md-6 col-sm-6 col-12" style="padding:0px; margin:0px;" onmouseover="displayInfo('div5')" onmouseout="removeInfo('div5')">
+                <img src="../images/Companies/microsoft.jpg" />
+
+                <figcaption id="div5">
+                    <p>Microsoft</p>
+                    <p class="stitle">
+
+                        <a class="btn btn-info" href="https://www.csiro.au/">
+                            Learn More
+                        </a>
+                </figcaption>
+            </figure>
+            <figure class="col-md-12 col-sm-12 col-12" style="padding:0px; margin:0px;" onmouseover="displayInfo('div6')" onmouseout="removeInfo('div6')">
+                <img src="../images/Companies/department.jpg" />
+
+                <figcaption id="div6">
+                    <p>Department of Industry, Science, Energy and Resources</p>
+                    <p class="stitle">
+
+                        <a class="btn btn-info" href="https://www.industry.gov.au/">
+                            Learn More
+                        </a>
+                </figcaption>
+            </figure>
+        </section>
+        <hr />
+
+
+
+        <div class="post">
+            <div class="submit-btn">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div style="text-align:center;"><a href="~/feedbacks/Create/" class="btn btn-info">Submit your feedback</a> </div>
+                }
+                else
+                {
+                    <div style="text-align:center">
+                        Please <a href="~/Identity/Account/Login?returnUrl=~/Home/companiesandorganisations"> login </a> or <a href="~/Identity/Account/Register?returnUrl=~/Home/companiesandorganisations"> create an account</a> to post your discussion on this page
+                    </div>
+                }
+            </div>
+            @model IEnumerable<Industry_4._0.Models.Feedback>
+           @if(Model != null ) {
+            @foreach (var item in Model)
+            {
+                <h1>@Html.DisplayFor(modelItem => item.Heading)</h1>
+                <h2>@@@Html.DisplayFor(modelItem => item.CompanyOrganisationName)</h2>
+                <p>
+                    @{ for (int i = 0; i < item.StarRating; i++)
+                        {
+                            <span style="color: #f8bd08; ">&#x2605;</span> }
+                        for (int i = 0; i < 5 - item.StarRating; i++)
+                        {
+                            <span>&#x2606;</span> } }
+                </p>
+                <p>@Html.DisplayFor(modelItem => item.FEEdback)</p>
+                <p>Posted by <b>@Html.DisplayFor(modelItem => item.UserName)</b> on @Html.DisplayFor(modelItem => item.Date)</p>
+                <a asp-controller="ReviewsForums" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
+                <a asp-controller="ReviewsForums" asp-action="IncreaseAgree" asp-route-id="@item.Id" class="btn btn-success">Agree(@Html.DisplayFor(modelItem => item.Agree))</a>
+                <a asp-controller="ReviewsForums" asp-action="IncreaseDisagree" asp-route-id="@item.Id" class="btn btn-danger">Disagree(@Html.DisplayFor(modelItem => item.Disagree))</a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("Manager"))
+                    {
+                        <a asp-controller="feedbacks" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                        <a asp-controller="feedbacks" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-primary">Delete</a>}
+                }
+            }
+            }
+
+        </div>
+</article>    
+</div>

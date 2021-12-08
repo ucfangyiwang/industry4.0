@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Industry_4._0</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-toggleable-md navbar-dark bg-dark box-shadow">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <span class="text-light">Industry 4.0</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+            
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="" asp-controller="Home" asp-action="companiesandorganisations">Companies&Organisations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="" asp-controller="Home" asp-action="emergingtechnologies">Emerging Technologies</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="" asp-controller="Home" asp-action="ca">Contact&About</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-fluid">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="page-footer font-small  navbar-dark bg-dark">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-12">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="" asp-controller="Home" asp-action="companiesandorganisations">Companies&Organisations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="" asp-controller="Home" asp-action="emergingtechnologies">Emerging Technologies</a>
+                        </li>
+                    </ul>
+                    <br />
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-12">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="" asp-controller="Home" asp-action="ca">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="" asp-controller="Home" asp-action="ca">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="" asp-controller="Home" asp-action="ca">Jobs</a>
+                        </li>
+                    </ul>
+                </div><div class="col-md-3 col-sm-6 col-12">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Privacy">Copyright</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="" asp-controller="Home" asp-action="companiesandorganisations">Feedback</a>
+                        </li>
+                       
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 col-12">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link " >Follow us </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="https://www.google.com" type="button" class="btn-floating btn-gg">
+                                <img src="~/images/social/google.png" /> 
+                            </a>
+                           
+                            <a href="https://www.youtube.com" type="button" class="btn-floating btn-yt">
+                                <img src="~/images/social/youtube.png" />
+                            </a>
+                            
+                            <a href="https://www.facbook.com" type="button" class="btn-floating btn-fb">
+                                <img src="~/images/social/facebook.png" />
+                            </a>
+                           
+                            <a href="https://www.twitter.com"type="button" class="btn-floating btn-tt">
+                                <img src="~/images/social/twitter.png" />
+                            </a>
+                            <a href="https://www.linkedin.com" type="button" class="btn-floating btn-li">
+                                <img src="~/images/social/linkedin.png" />
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

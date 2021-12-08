@@ -1,0 +1,142 @@
+﻿@model IEnumerable<Industry_4._0.Models.Feedback>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+@{
+    if (User.Identity.IsAuthenticated)
+    {
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+    }
+}
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Heading)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyOrganisationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StarRating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FEEdback)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Agree)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Disagree)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Date)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.UserName)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.Heading)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.CompanyOrganisationName)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.StarRating)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.FEEdback)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.Agree)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.Disagree)
+            </td>
+
+            <td>
+            <td>
+                @if (User.IsInRole("Manager"))
+                {
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                }
+                |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                @if (User.IsInRole("Manager"))
+                {
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                }
+                <a asp-action="IncreaseAgree" asp-route-id="@item.Id"></a>
+                <a asp-action="IncreaseAgree" asp-route-id="@item.Id">Agree</a>
+                <a asp-action="DecreaseAgree" asp-route-id="@item.Id">Disagree</a>
+            </td>
+            <div class="post">
+                <div class="submit-btn">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div style="text-align:center;"><a href="~/feedbacks/Create/" class="btn btn-info">Submit your feedback</a> </div>
+                    }
+                    else
+                    {
+                        <div style="text-align:center">
+                            Please <a href="~/Identity/Account/Login?returnUrl=~/Home/companiesandorganisations"> login </a> or <a href="~/Identity/Account/Register?returnUrl=~/Home/companiesandorganisations"> create an account</a> to post your discussion on this page
+                        </div>
+                    }
+                </div>
+                @model IEnumerable<Industry_4._0.Models.Feedback>
+                @if (Model != null)
+                {
+                    @foreach (var item in Model)
+                    {
+                        <h1>@Html.DisplayFor(modelItem => item.Heading)</h1>
+                        <h2>@@@Html.DisplayFor(modelItem => item.CompanyOrganisationName)</h2>
+                        <p>
+                            @{ for (int i = 0; i < item.StarRating; i++)
+                                {
+                                    <span style="color: #f8bd08; ">&#x2605;</span> }
+                                for (int i = 0; i < 5 - item.StarRating; i++)
+                                {
+                                    <span>&#x2606;</span> } }
+                        </p>
+                        <p>@Html.DisplayFor(modelItem => item.FEEdback)</p>
+                        <p>Posted by <b>@Html.DisplayFor(modelItem => item.UserName)</b> on @Html.DisplayFor(modelItem => item.Date)</p>
+                        <a asp-controller="ReviewsForums" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
+                        <a asp-controller="ReviewsForums" asp-action="IncreaseAgree" asp-route-id="@item.Id" class="btn btn-success">Agree(@Html.DisplayFor(modelItem => item.Agree))</a>
+                        <a asp-controller="ReviewsForums" asp-action="IncreaseDisagree" asp-route-id="@item.Id" class="btn btn-danger">Disagree(@Html.DisplayFor(modelItem => item.Disagree))</a>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (User.IsInRole("Manager"))
+                            {
+                                <a asp-controller="feedbacks" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                                <a asp-controller="feedbacks" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-primary">Delete</a>}
+                        }
+                    }
+                }
+
+        </tr>
+        }
+    </tbody>
+</table>
